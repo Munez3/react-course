@@ -1,14 +1,18 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useUserContext } from './UserContext';
 import { useParams } from 'react-router-dom';
 import { Flexbox, UserBox, Container } from './Styled';
+import { IUser } from './UserContext';
 
 export default function ChoosenUser(){
     const { getUser } = useUserContext();
     const { id } = useParams();
+    const [ user, setUser ] = useState<IUser>();
 
-    const user = useMemo(() => {
-        return getUser(id);
+    useEffect(() => {
+        getUser(id).then((response: any) => {
+            setUser(response);
+        })
     }, [id])
 
     if(!user){
