@@ -1,0 +1,32 @@
+.btn{
+    background-color: #fff;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+.container{
+    height: 100vh;
+}
+
+.flexbox{
+    display: flex;
+    justify-content: center;
+
+    &--sbet{
+        justify-content: space-between;
+    }
+}
+
+.form{
+    margin-top: 100px;
+    margin-bottom: 50px;
+    display: block;
+    width: 600px;
+
+    &__input{
+        width: 100%;
+        display: block;
+        margin: 7px 0;
+        padding: 4px;
+    }
+}
