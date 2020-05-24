@@ -1,19 +1,13 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React from 'react';
 import { useUserContext } from './UserContext';
 import { useParams } from 'react-router-dom';
 import { Flexbox, UserBox, Container } from './Styled';
-import { IUser } from './UserContext';
 
 export default function ChoosenUser(){
     const { getUser } = useUserContext();
     const { id } = useParams();
-    const [ user, setUser ] = useState<IUser>();
 
-    useEffect(() => {
-        getUser(id).then((response: any) => {
-            setUser(response);
-        })
-    }, [id])
+    const user = getUser(id);
 
     if(!user){
         return <div>Brak </div>

@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useContext, useEffect } from 'react';
+import React, { createContext, useReducer, useContext, useEffect, useState } from 'react';
 import api from './ky';
 
 interface IUserContext {
@@ -6,9 +6,11 @@ interface IUserContext {
     removeUser: Function;
     addUser: Function;
     getUser: Function;
+    choosenUser?: IUser;
+    clearChoosenUser: Function;
 }
 
-const UserContext = createContext<IUserContext>({users: [], removeUser: () => {}, addUser: () => {}, getUser: () => {}});
+const UserContext = createContext<IUserContext>({users: [], removeUser: () => {}, addUser: () => {}, getUser: () => {}, choosenUser: undefined, clearChoosenUser: () => {}});
 
 export interface IUser {
     id?: number;
@@ -41,6 +43,7 @@ function userReducer(state: IUser[], action: {type: IUserActions, payload: any})
 
 export function UserProvider({children}: any){
     const [users, dispatch] = useReducer(userReducer, []);
+    const [choosenUser, setChoosenUser] = useState(undefined);
 
     function addUsers(data: IUser[]){
         dispatch({type: IUserActions.ADD_USERS, payload: data})
@@ -66,13 +69,18 @@ export function UserProvider({children}: any){
 
     async function getUser(id: number): Promise<any>{
         try {
-            const user = await api.get(`users/${id}`).json();   
+            const user = await api.get(`users/${id}`).json();
+            setChoosenUser(user);   
             return user;
         } catch (error) {
             console.error(error);
         }
 
         // return users.find((user: IUser) => user.id == id)
+    }
+
+    function clearChoosenUser(){
+        setChoosenUser(undefined);
     }
 
     useEffect(() => {
@@ -84,7 +92,7 @@ export function UserProvider({children}: any){
     }, []);
 
     return (
-        <UserContext.Provider value={{users, addUser, removeUser, getUser }}>
+        <UserContext.Provider value={{users, addUser, removeUser, getUser, choosenUser, clearChoosenUser }}>
             {children}
         </UserContext.Provider>
     )

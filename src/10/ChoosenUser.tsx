@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { useUserContext } from './UserContext';
 import { useParams } from 'react-router-dom';
 import { Flexbox, UserBox, Container } from './Styled';
@@ -7,9 +7,7 @@ export default function ChoosenUser(){
     const { getUser } = useUserContext();
     const { id } = useParams();
 
-    const user = useMemo(() => {
-        return getUser(id);
-    }, [id])
+    const user = getUser(id);
 
     if(!user){
         return <div>Brak </div>

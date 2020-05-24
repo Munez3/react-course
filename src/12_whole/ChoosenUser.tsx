@@ -4,17 +4,18 @@ import { useParams } from 'react-router-dom';
 import { Flexbox, UserBox, Container } from './Styled';
 
 export default function ChoosenUser(){
-    const { getUser } = useUserContext();
+    const { getUser, choosenUser, clearChoosenUser } = useUserContext();
     const { id } = useParams();
-    const [ user, setUser ] = useState<IUser>();
     
     useEffect(() => {
-        getUser(id).then((response: any) => {
-            setUser(response);
-        })
+        getUser(id);
+
+        return () => {
+            clearChoosenUser();
+        }
     }, [id])
 
-    if(!user){
+    if(!choosenUser){
         return <Flexbox>Ładowanie... </Flexbox>
     }
 
@@ -22,16 +23,16 @@ export default function ChoosenUser(){
         <Flexbox>
             <Container>
                 <UserBox sbet>
-                    <span>Imię:</span><span>{user?.firstName}</span> 
+                    <span>Imię:</span><span>{choosenUser?.firstName}</span> 
                 </UserBox>
                 <UserBox sbet>
-                    <span>Nazwisko:</span><span>{user?.lastName}</span> 
+                    <span>Nazwisko:</span><span>{choosenUser?.lastName}</span> 
                 </UserBox>
                 <UserBox sbet>
-                    <span>Wiek:</span><span>{user?.age}</span> 
+                    <span>Wiek:</span><span>{choosenUser?.age}</span> 
                 </UserBox>
                 <UserBox sbet>
-                    <span>Adres e-mail:</span><span>{user?.email}</span> 
+                    <span>Adres e-mail:</span><span>{choosenUser?.email}</span> 
                 </UserBox>
             </Container>
         </Flexbox>
