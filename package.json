@@ -44,5 +44,10 @@
   "devDependencies": {
     "json-server": "^0.16.1",
     "node-sass": "^4.14.1"
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "node_modules/(?!(ky)/)"
+    ]
   }
 }
