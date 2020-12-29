@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import User from './User';
 import './common.scss';
 import { useUserContext } from './UserContext';

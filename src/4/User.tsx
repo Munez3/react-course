@@ -9,7 +9,11 @@ export default function User({firstName, lastName}: IProps){
 
     return (
         <div>
-            <div>
+            {firstName || "nie ma imienia"}
+            <br />
+            {lastName || "nie ma nazwiska"}
+
+            {/* <div>
                 {(firstName || lastName) ? 
                     (
                         <div>
@@ -27,7 +31,7 @@ export default function User({firstName, lastName}: IProps){
                 )}
 
                 {!(firstName || lastName) && "Brak danych"}
-            </div>
+            </div> */}
         </div>
     )
 }

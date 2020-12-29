@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useUserContext, IUser } from './UserContext';
+import React, { useEffect } from 'react';
+import { useUserContext } from './UserContext';
 import { useParams } from 'react-router-dom';
 import { Flexbox, UserBox, Container } from './Styled';
 
-export default function ChoosenUser(){
+interface IProps {
+    userId?: number;
+}
+
+export default function ChoosenUser(props: IProps){
     const { getUser, choosenUser, clearChoosenUser } = useUserContext();
     const { id } = useParams();
     
     useEffect(() => {
-        getUser(id);
+        getUser(props.userId || id);
 
         return () => {
             clearChoosenUser();

@@ -12,6 +12,7 @@ export const Container = styled.div`
 
 interface IFlexboxProps {
     sbet?: boolean;
+    wrap?: boolean;
 }
 
 export const Flexbox = styled.div<IFlexboxProps>`
@@ -24,6 +25,13 @@ export const Flexbox = styled.div<IFlexboxProps>`
 export const UserBox = styled(Flexbox)`
     width: 100%;
     margin-bottom: 20px;
+    ${({wrap}) => {
+        if(wrap){
+            return `flex-wrap: wrap`
+        }
+
+        return '';
+    }}
 `
 
 export const StyledForm = styled.form`
@@ -45,4 +53,11 @@ export const StyledSubmit = styled(StyledInput)`
 background-color: #fff;
 border: 1px solid #000;
 cursor: pointer;
+`
+export const ArrowIcon = styled.img`
+    margin-right: 10px;
+    width: 20px;
+    height: auto;
+    vertical-align: bottom;
+    cursor: pointer;
 `

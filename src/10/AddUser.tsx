@@ -15,9 +15,21 @@ export default function AddUser(){
         <div className="flexbox">
             <div>
                 <StyledForm>
-                    <StyledInput type="text" value={firstName} onChange={(e) => { setFirstName(e.target.value)}} />
-                    <StyledInput type="text" value={lastName} onChange={(e) => { setLastName(e.target.value)}} />
-                    <StyledInput type="text" value={age} onChange={e => setAge(Number(e.target.value))} />
+                    <StyledInput 
+                        type="text" 
+                        value={firstName} 
+                        onChange={(e) => { setFirstName(e.target.value)}} 
+                    />
+                    <StyledInput 
+                        type="text" 
+                        value={lastName} 
+                        onChange={(e) => { setLastName(e.target.value)}} 
+                    />
+                    <StyledInput 
+                        type="text" 
+                        value={age} 
+                        onChange={e => setAge(Number(e.target.value))} 
+                    />
 
                     <StyledSubmit type="submit" onClick={e => {
                         e.preventDefault();

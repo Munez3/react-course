@@ -16,7 +16,11 @@ export default function User({ user, removeUser }: IProps){
     return (
         <div>
             <div>
-                {firstName} {lastName} {age} <button onClick={remove} >Usuń</button>
+                {firstName} 
+                {lastName} 
+                {age} 
+                <button onClick={remove} >Usuń</button>
+                
                 {!(firstName || lastName) && "Brak danych"}
             </div>
         </div>

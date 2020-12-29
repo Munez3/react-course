@@ -26,7 +26,7 @@ describe("UserList", () => {
                     "email": "hcana0@ehow.com",
                     "gender": "Female",
                     "age": 18
-                  },
+                  }, 
                   {
                     "id": 2,
                     "firstName": "Dorella",

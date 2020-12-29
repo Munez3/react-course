@@ -6,7 +6,6 @@ interface IUserContext {
     addUser: Function;
 }
 
-const UserContext = createContext<IUserContext>({users: [], removeUser: () => {}, addUser: () => {}});
 
 export interface IUser {
     id?: number;
@@ -15,6 +14,7 @@ export interface IUser {
     age: number;
 }
 
+const UserContext = createContext<IUserContext>({users: [], removeUser: () => {}, addUser: () => {}});
 enum IUserActions {
     ADD = 'ADD',
     REMOVE = 'REMOVE'

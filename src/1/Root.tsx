@@ -5,7 +5,7 @@ import User from './User';
 export default function Root(){
     return (
         <div>
-            <User firstName="Tadeusz" />
+            <User firstName="Tomasz" />
         </div>
     )
 }

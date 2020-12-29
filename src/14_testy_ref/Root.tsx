@@ -1,10 +1,12 @@
 import React from 'react';
 import './common.scss';
 import { UserProvider } from './UserContext';
-import Users from './Users';
+// import Users from './Users';
 import { BrowserRouter, Link, Switch, Route, Redirect } from 'react-router-dom';
 import AddUser from './AddUser';
 import ChoosenUser from './ChoosenUser';
+
+const Users = React.lazy(() => import('./Users'));
 
 export default function Root(){
 
@@ -25,20 +27,22 @@ export default function Root(){
                     </ul>
                 </nav>
                 <UserProvider> 
-                    <Switch>
-                        <Route exact path="/user">
-                            <Users />
-                        </Route>
-                        <Route exact path="/user/add">
-                            <AddUser />
-                        </Route>
-                        <Route exact path="/user/:id">
-                            <ChoosenUser />
-                        </Route>
-                        <Route path="/">
-                            <Redirect to="/user" />
-                        </Route>
-                    </Switch>
+                    <React.Suspense fallback={<div>Loading...</div>} >
+                        <Switch>
+                            <Route exact path="/user">
+                                <Users />
+                            </Route>
+                            <Route exact path="/user/add">
+                                <AddUser />
+                            </Route>
+                            <Route exact path="/user/:id">
+                                <ChoosenUser />
+                            </Route>
+                            <Route path="/">
+                                <Redirect to="/user" />
+                            </Route>
+                        </Switch>
+                    </React.Suspense>
                 </UserProvider>
             </div>
         </BrowserRouter>

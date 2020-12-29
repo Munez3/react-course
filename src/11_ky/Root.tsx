@@ -9,7 +9,7 @@ import api from './ky';
 
 async function getUsers(){
     try {
-        const response = await api.get('users').json();
+        const response = await api.get('users', {searchParams: {id: 12}}).json();
         console.log(response);
     } catch (error) {
         console.error((error));
@@ -38,7 +38,7 @@ async function addUser(){
     }
 }
 
-setTimeout(addUser, 5000)
+// setTimeout(addUser, 5000)
 
 export default function Root(){
 

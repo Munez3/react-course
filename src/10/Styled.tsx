@@ -42,7 +42,7 @@ export const StyledInput = styled.input`
 `;
 
 export const StyledSubmit = styled(StyledInput)`
-background-color: #fff;
-border: 1px solid #000;
-cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #000;
+    cursor: pointer;
 `
